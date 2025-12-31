@@ -1,19 +1,75 @@
+import { Code2, Database, Wrench, FileCode } from 'lucide-react';
+
+// SVG Logo Components
+const ReactLogo = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 10.11c1.03 0 1.87.84 1.87 1.89 0 1-.84 1.85-1.87 1.85S10.13 13 10.13 12c0-1.05.84-1.89 1.87-1.89M7.37 20c.63.38 2.01-.2 3.6-1.7-.52-.59-1.03-1.23-1.51-1.9a22.7 22.7 0 0 1-2.4-.36c-.51 2.14-.32 3.61.31 3.96m.71-5.74l-.29-.51c-.11.29-.22.58-.29.86.27.06.57.11.88.16l-.3-.51m6.54-.76l.81-1.5-.81-1.5c-.3-.53-.62-1-.91-1.47C13.17 9 12.6 9 12 9c-.6 0-1.17 0-1.71.03-.29.47-.61.94-.91 1.47L8.57 12l.81 1.5c.3.53.62 1 .91 1.47.54.03 1.11.03 1.71.03.6 0 1.17 0 1.71-.03.29-.47.61-.94.91-1.47M12 6.78c-.19.22-.39.45-.59.72h1.18c-.2-.27-.4-.5-.59-.72m0 10.44c.19-.22.39-.45.59-.72h-1.18c.2.27.4.5.59.72M16.62 4c-.62-.38-2 .2-3.59 1.7.52.59 1.03 1.23 1.51 1.9.82.08 1.63.2 2.4.36.51-2.14.32-3.61-.32-3.96m-.7 5.74l.29.51c.11-.29.22-.58.29-.86-.27-.06-.57-.11-.88-.16l.3.51m1.45-7.05c1.47.84 1.63 3.05 1.01 5.63 2.54.75 4.37 1.99 4.37 3.68s-1.83 2.93-4.37 3.68c.62 2.58.46 4.79-1.01 5.63-1.46.84-3.45-.12-5.37-1.95-1.92 1.83-3.91 2.79-5.38 1.95-1.46-.84-1.62-3.05-1-5.63-2.54-.75-4.37-1.99-4.37-3.68s1.83-2.93 4.37-3.68c-.62-2.58-.46-4.79 1-5.63 1.47-.84 3.46.12 5.38 1.95 1.92-1.83 3.91-2.79 5.37-1.95M17.08 12c.34.75.64 1.5.89 2.26 2.1-.63 3.28-1.53 3.28-2.26 0-.73-1.18-1.63-3.28-2.26-.25.76-.55 1.51-.89 2.26M6.92 12c-.34-.75-.64-1.5-.89-2.26-2.1.63-3.28 1.53-3.28 2.26 0 .73 1.18 1.63 3.28 2.26.25-.76.55-1.51.89-2.26m9.35 1.5c.25.49.47.98.67 1.48.09-.08.18-.16.27-.24h-.94m-11.5.24c.2-.5.42-.99.67-1.48l-.27-.02c-.11.29-.22.58-.29.86.27.06.57.11.88.16-.09.08-.18.16-.27.24h-.94c.09.08.18.16.27.24h.94m6.23-3.98c.4-.66.84-1.29 1.3-1.87-.82-.04-1.65-.04-2.47 0 .46.58.9 1.21 1.17 1.87z"/>
+  </svg>
+);
+
+const PythonLogo = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M9.585 11.692h4.328s2.432.039 2.432-2.35V5.391S16.714 3 11.936 3C7.362 3 7.647 4.983 7.647 4.983l.006 2.055h4.363v.617H5.92s-2.927-.332-2.927 4.282 2.555 4.45 2.555 4.45h1.524v-2.141s-.083-2.554 2.513-2.554zm-.056-5.74a.784.784 0 1 1 0-1.57.784.784 0 1 1 0 1.57z"/>
+    <path d="M18.452 7.532h-1.524v2.141s.083 2.554-2.513 2.554h-4.328s-2.432-.04-2.432 2.35v3.951s-.369 2.391 4.409 2.391c4.573 0 4.288-1.983 4.288-1.983l-.006-2.054h-4.363v-.617h6.097s2.927.332 2.927-4.282-2.555-4.451-2.555-4.451zm-3.981 10.436a.784.784 0 1 1 0 1.57.784.784 0 1 1 0-1.57z"/>
+  </svg>
+);
+
+const JavaScriptLogo = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3 3h18v18H3V3zm16.525 13.707c-.131-.821-.666-1.511-2.252-2.155-.552-.259-1.165-.438-1.349-.854-.068-.248-.078-.382-.034-.529.113-.484.687-.629 1.137-.495.293.09.563.315.732.676.775-.507.775-.507 1.316-.844-.203-.314-.304-.451-.439-.586-.473-.528-1.103-.798-2.126-.775l-.528.067c-.507.124-.991.395-1.283.754-.855.968-.611 2.655.427 3.354 1.023.765 2.521.933 2.712 1.653.18.878-.652 1.159-1.475 1.058-.607-.136-.945-.439-1.316-1.002l-1.372.788c.157.359.337.517.607.832 1.305 1.316 4.568 1.249 5.153-.754.021-.067.18-.528.056-1.237l.034.049zm-6.737-5.434h-1.686c0 1.453-.007 2.898-.007 4.354 0 .924.047 1.772-.104 2.033-.247.517-.886.451-1.175.359-.297-.146-.448-.349-.623-.641-.047-.078-.082-.146-.095-.146l-1.368.844c.229.473.563.879.994 1.137.641.383 1.502.507 2.404.305.588-.17 1.095-.519 1.358-1.059.384-.697.302-1.553.299-2.509.008-1.541 0-3.083 0-4.635l.003-.042z"/>
+  </svg>
+);
+
+const NodeJSLogo = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z"/>
+  </svg>
+);
+
 const skillCategories = [
   {
     title: 'Languages',
-    skills: ['Python', 'Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS'],
+    icon: FileCode,
+    skills: [
+      { name: 'Python', logo: PythonLogo },
+      { name: 'Java', logo: () => <span className="font-bold text-red-500">☕</span> },
+      { name: 'JavaScript', logo: JavaScriptLogo },
+      { name: 'TypeScript', logo: () => <span className="font-bold text-blue-500">TS</span> },
+      { name: 'HTML', logo: () => <span className="font-bold text-orange-500">&lt;/&gt;</span> },
+      { name: 'CSS', logo: () => <span className="font-bold text-blue-400">#</span> },
+    ],
   },
   {
     title: 'Frontend',
-    skills: ['React', 'Next.js', 'Tailwind CSS','Flutter', 'Dart'],
+    icon: Code2,
+    skills: [
+      { name: 'React', logo: ReactLogo },
+      { name: 'Next.js', logo: () => <span className="font-bold">▲</span> },
+      { name: 'Tailwind CSS', logo: () => <span className="text-cyan-400">🎨</span> },
+      { name: 'Flutter', logo: () => <span className="text-blue-400">🦋</span> },
+      { name: 'Dart', logo: () => <span className="text-blue-500">🎯</span> },
+    ],
   },
   {
     title: 'Backend',
-    skills: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB'],
+    icon: Database,
+    skills: [
+      { name: 'Node.js', logo: NodeJSLogo },
+      { name: 'Express', logo: () => <span className="font-bold">E</span> },
+      { name: 'PostgreSQL', logo: () => <span className="text-blue-400">🐘</span> },
+      { name: 'MongoDB', logo: () => <span className="text-green-500">🍃</span> },
+    ],
   },
   {
     title: 'Tools & Databases',
-    skills: ['Git & GitHub', , 'VS Code', 'Figma', 'Firebase', 'MySQL'],
+    icon: Wrench,
+    skills: [
+      { name: 'Git & GitHub', logo: () => <span>📦</span> },
+      { name: 'VS Code', logo: () => <span className="text-blue-500">💻</span> },
+      { name: 'Figma', logo: () => <span>🎨</span> },
+      { name: 'Firebase', logo: () => <span className="text-orange-500">🔥</span> },
+      { name: 'MySQL', logo: () => <span className="text-blue-400">🐬</span> },
+    ],
   },
 ];
 
@@ -32,27 +88,35 @@ export default function Skills() {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {skillCategories.map((category) => (
-            <div key={category.title}>
-              {/* Category Header */}
-              <div className="bg-slate-800 text-center py-4 rounded-md font-semibold text-lg mb-6">
-                {category.title}
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {skillCategories.map((category) => {
+            const IconComponent = category.icon;
+            return (
+              <div key={category.title}>
+                {/* Category Header */}
+                <div className="bg-slate-800 text-center py-4 rounded-md font-semibold text-lg mb-6 flex items-center justify-center gap-2">
+                  <IconComponent className="w-5 h-5" />
+                  {category.title}
+                </div>
 
-              {/* Skill List */}
-              <ul className="space-y-4">
-                {category.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="bg-slate-900 border border-slate-700 rounded-full px-5 py-2 text-sm text-center"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                {/* Skill List */}
+                <ul className="space-y-4">
+                  {category.skills.map((skill) => {
+                    const LogoComponent = skill.logo;
+                    return (
+                      <li
+                        key={skill.name}
+                        className="bg-slate-900 border border-slate-700 rounded-full px-5 py-2 text-sm text-center flex items-center justify-center gap-2 hover:bg-slate-800 hover:border-slate-600 transition-all duration-200"
+                      >
+                        <LogoComponent />
+                        <span>{skill.name}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
