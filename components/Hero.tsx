@@ -34,13 +34,25 @@ export default function Hero() {
           }`}
         >
           <div className="mb-8">
-            <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-600 to-sky-400 flex items-center justify-center text-white text-5xl font-bold">
-              P
+            <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
+              <img
+                src="/profilepic.jpg"
+                alt="Chanul Nanvidu"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const parent = e.currentTarget.parentElement;
+                  if (parent) {
+                    parent.classList.add('bg-gradient-to-br', 'from-blue-600', 'to-sky-400', 'flex', 'items-center', 'justify-center');
+                    parent.innerHTML = '<span class="text-white text-5xl font-bold">CN</span>';
+                  }
+                }}
+              />
             </div>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            Hi, I'm <span className="text-blue-600 dark:text-blue-400">Your Name</span>
+            Hi, I'm <span className="text-blue-600 dark:text-blue-400">Chanul Nanvidu</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-4">
