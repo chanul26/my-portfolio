@@ -2,11 +2,11 @@ import { Briefcase, GraduationCap } from 'lucide-react';
 
 const experiences = [
   {
-    type: 'work',
-    title: 'Frontend Developer',
-    company: 'Tech Company Inc.',
-    period: 'Jan 2023 - Present',
-    description: 'Developing responsive web applications using React and TypeScript. Collaborating with designers and backend developers to create seamless user experiences.',
+    type: 'Education',
+    title: 'Bachelor of Science in Computer Science',
+    company: 'University of Westminster',
+    period: 'Present',
+    description: '2nd Year student',
     skills: ['React', 'TypeScript', 'Tailwind CSS', 'REST APIs'],
   },
   {

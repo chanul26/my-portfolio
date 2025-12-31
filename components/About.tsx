@@ -40,19 +40,23 @@ export default function About() {
               Hello! I'm a passionate developer
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              I'm a Computer Science student with a strong passion for web development
-              and creating meaningful digital experiences. I love turning complex problems
-              into simple, beautiful solutions.
+              I’m a second-year Computer Science student with a strong interest in software
+              and web development. I enjoy learning how modern applications are designed,
+              built, and scaled using current technologies.
             </p>
+
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              With experience in modern web technologies, I focus on building responsive,
-              accessible, and performant applications. I'm always eager to learn new
-              technologies and improve my skills.
+              I am actively learning and working with technologies such as Java, Python,
+              JavaScript, React, Flutter, and Dart. My goal is to grow into a full-stack
+              developer by building a solid foundation in both frontend and backend
+              development.
             </p>
+
             <p className="text-gray-600 dark:text-gray-400">
-              When I'm not coding, you can find me exploring new technologies,
-              contributing to open-source projects, or working on personal projects
-              that challenge me to grow as a developer.
+              As a student, I focus on improving my problem-solving skills, understanding
+              core computer science concepts, and continuously learning through coursework
+              and personal practice. I am motivated to keep developing my skills and take on
+              more challenging projects as I progress.
             </p>
           </div>
 

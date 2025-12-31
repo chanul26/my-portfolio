@@ -34,7 +34,7 @@ export default function Hero() {
           }`}
         >
           <div className="mb-8">
-            <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
+            <div className="w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-1 shadow-lg">
               <img
                 src="/profilepic.jpg"
                 alt="Chanul Nanvidu"

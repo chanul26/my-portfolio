@@ -2,18 +2,18 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
+    title: 'LUVO Clothing (Ongoing)',
     description: 'A full-featured e-commerce platform with cart functionality, user authentication, and payment integration.',
     image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    github: 'https://github.com/yourusername/project1',
-    live: 'https://project1.demo.com',
+    tags: ['React', 'Node.js', 'MongoDB', 'Stripe','Firebase'],
+    github: 'https://github.com/ravindu212/FBA',
+    live: 'https://fba-frontend-two.vercel.app/',
   },
   {
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team features.',
+    title: 'LamiGO (Ongoing)',
+    description: 'Last Mile Delivery Optimisation Platfoarm using Route Optimization Algorithms to enhance delivery efficiency and reduce costs for logistics companies.',
     image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tags: ['React', 'TypeScript', 'Firebase', 'Tailwind'],
+    tags: ['React', 'Flutter','Node.Js','PostgreSQL','DynamoDB','TypeScript', 'Firebase', 'Tailwind'],
     github: 'https://github.com/yourusername/project2',
     live: 'https://project2.demo.com',
   },
@@ -24,31 +24,7 @@ const projects = [
     tags: ['React', 'Weather API', 'Charts.js', 'CSS'],
     github: 'https://github.com/yourusername/project3',
     live: 'https://project3.demo.com',
-  },
-  {
-    title: 'Social Media Dashboard',
-    description: 'An analytics dashboard for social media metrics with data visualization and performance tracking.',
-    image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tags: ['React', 'D3.js', 'Express', 'PostgreSQL'],
-    github: 'https://github.com/yourusername/project4',
-    live: 'https://project4.demo.com',
-  },
-  {
-    title: 'Portfolio CMS',
-    description: 'A content management system for portfolio websites with drag-and-drop builder and theme customization.',
-    image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tags: ['React', 'Next.js', 'Supabase', 'Tailwind'],
-    github: 'https://github.com/yourusername/project5',
-    live: 'https://project5.demo.com',
-  },
-  {
-    title: 'Fitness Tracker',
-    description: 'A comprehensive fitness tracking app with workout plans, progress tracking, and nutrition logging.',
-    image: 'https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=800',
-    tags: ['React Native', 'Firebase', 'Redux', 'Charts'],
-    github: 'https://github.com/yourusername/project6',
-    live: 'https://project6.demo.com',
-  },
+  }
 ];
 
 export default function Projects() {
