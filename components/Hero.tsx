@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Twitter, Moon, Sun } from 'lucide-react';
+import { Github, Linkedin, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/useTheme';
 
 export default function Hero() {
