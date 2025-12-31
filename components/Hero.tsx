@@ -1,11 +1,41 @@
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, Download, Twitter, Facebook } from 'lucide-react';
+import { Github, Linkedin, Twitter } from 'lucide-react';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  useEffect(() => {
+    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((sectionId) => {
+      const element = document.querySelector(`#${sectionId}`);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   const handleDownloadCV = () => {
@@ -22,6 +52,14 @@ export default function Hero() {
     }
   };
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const element = document.querySelector(`#${sectionId}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Navigation */}
@@ -32,11 +70,61 @@ export default function Hero() {
               CN<span className="text-cyan-400">.</span>
             </div>
             <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-cyan-400 hover:text-cyan-300 transition-colors">Home</a>
-              <a href="#about" className="text-gray-300 hover:text-white transition-colors">About</a>
-              <a href="#services" className="text-gray-300 hover:text-white transition-colors">Services</a>
-              <a href="#portfolio" className="text-gray-300 hover:text-white transition-colors">Portfolio</a>
-              <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
+              <a 
+                href="#home" 
+                onClick={(e) => scrollToSection(e, 'home')}
+                className={`transition-colors ${
+                  activeSection === 'home' 
+                    ? 'text-cyan-400' 
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                Home
+              </a>
+              <a 
+                href="#about" 
+                onClick={(e) => scrollToSection(e, 'about')}
+                className={`transition-colors ${
+                  activeSection === 'about' 
+                    ? 'text-cyan-400' 
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                About
+              </a>
+              <a 
+                href="#skills" 
+                onClick={(e) => scrollToSection(e, 'skills')}
+                className={`transition-colors ${
+                  activeSection === 'skills' 
+                    ? 'text-cyan-400' 
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                Skills
+              </a>
+              <a 
+                href="#projects" 
+                onClick={(e) => scrollToSection(e, 'projects')}
+                className={`transition-colors ${
+                  activeSection === 'projects' 
+                    ? 'text-cyan-400' 
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                Portfolio
+              </a>
+              <a 
+                href="#contact" 
+                onClick={(e) => scrollToSection(e, 'contact')}
+                className={`transition-colors ${
+                  activeSection === 'contact' 
+                    ? 'text-cyan-400' 
+                    : 'text-gray-300 hover:text-white'
+                }`}
+              >
+                Contact
+              </a>
             </div>
           </div>
         </div>
