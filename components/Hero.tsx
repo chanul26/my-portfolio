@@ -40,11 +40,49 @@ export default function Hero() {
     };
   }, []);
 
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/cv.pdf';
-    link.download = 'CV.pdf';
-    link.click();
+  const handleDownloadCV = async () => {
+    try {
+      // Fetch the PDF file from the public folder
+      const response = await fetch('/CSG20_20231809.pdf');
+      
+      if (!response.ok) {
+        throw new Error('CV file not found');
+      }
+
+      // Get the blob from the response
+      const blob = await response.blob();
+      
+      // Create a blob URL
+      const blobUrl = window.URL.createObjectURL(blob);
+      
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'Chanul_Nanvidu_CV.pdf';
+      link.style.display = 'none';
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      
+      // Clean up after a short delay
+      setTimeout(() => {
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(blobUrl);
+      }, 100);
+    } catch (error) {
+      console.error('Error downloading CV:', error);
+      // Fallback: try direct download
+      const link = document.createElement('a');
+      link.href = '/CSG20_20231809.pdf';
+      link.download = 'Chanul_Nanvidu_CV.pdf';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => {
+        document.body.removeChild(link);
+      }, 100);
+    }
   };
 
   const scrollToContact = () => {
