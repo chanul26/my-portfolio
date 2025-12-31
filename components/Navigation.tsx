@@ -14,6 +14,7 @@ const navLinks = [
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -21,7 +22,32 @@ export default function Navigation() {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    navLinks.forEach((link) => {
+      const element = document.querySelector(link.href);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -54,7 +80,9 @@ export default function Navigation() {
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
+                  activeSection === link.href.slice(1) ? 'text-blue-600 dark:text-blue-400' : ''
+                }`}
               >
                 {link.name}
               </button>
@@ -94,7 +122,9 @@ export default function Navigation() {
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                className={`block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors ${
+                  activeSection === link.href.slice(1) ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' : ''
+                }`}
               >
                 {link.name}
               </button>

@@ -44,7 +44,7 @@ export default function Footer() {
             </h3>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/chanul26"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors"
@@ -52,18 +52,12 @@ export default function Footer() {
                 <Github size={20} />
               </a>
               <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://www.linkedin.com/in/chanul-nanvidu/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors"
               >
                 <Linkedin size={20} />
-              </a>
-              <a
-                href="mailto:your.email@example.com"
-                className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors"
-              >
-                <Mail size={20} />
               </a>
             </div>
           </div>
@@ -71,9 +65,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-gray-200 dark:border-slate-800">
           <p className="text-center text-gray-600 dark:text-gray-400 flex items-center justify-center space-x-2">
-            <span>&copy; {currentYear} Portfolio. Made with</span>
-            <Heart size={16} className="text-red-500 fill-current" />
-            <span>by Your Name</span>
+            <span>&copy; {currentYear} All Rights Reserved</span>
           </p>
         </div>
       </div>

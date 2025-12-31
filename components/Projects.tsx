@@ -2,7 +2,7 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
   {
-    title: 'LUVO Clothing (Ongoing)',
+    title: 'LUVO Clothing',
     description: 'A full-featured e-commerce platform with cart functionality, user authentication, and payment integration.',
     image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=800',
     tags: ['React', 'Node.js', 'MongoDB', 'Stripe','Firebase'],
