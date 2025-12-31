@@ -1,5 +1,6 @@
-import { useState, useRef, FormEvent } from 'react';
+import { useState, useRef, FormEvent, useEffect } from 'react';
 import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,14 @@ export default function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    // Initialize EmailJS with public key
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -36,39 +45,74 @@ export default function Contact() {
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error('EmailJS configuration is missing');
+        throw new Error('EmailJS configuration is missing. Please check your .env file.');
       }
 
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          service_id: serviceId,
-          template_id: templateId,
-          user_id: publicKey,
-          template_params: {
-            from_name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject || 'Portfolio Contact',
-            message: formData.message,
-            to_name: 'Your Name',
-          },
-        }),
+      // Log configuration for debugging
+      console.log('EmailJS Config Check:', {
+        serviceId: serviceId || '✗ Missing',
+        templateId: templateId || '✗ Missing',
+        publicKey: publicKey ? `✓ Set (${publicKey.length} chars)` : '✗ Missing',
       });
-
-      if (response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        throw new Error('Failed to send email');
+      
+      // Validate Service ID format
+      if (serviceId && !serviceId.startsWith('service_')) {
+        console.warn('Service ID should start with "service_"');
       }
-    } catch (error) {
+
+      // Template parameters - matching your EmailJS template exactly
+      // Your template uses: {{from_name}}, {{from_email}}, {{message}}
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+      };
+
+      console.log('EmailJS Configuration:', {
+        serviceId,
+        templateId,
+        publicKeyLength: publicKey?.length || 0,
+      });
+      console.log('Template Parameters:', templateParams);
+
+      // Use the public key directly in send() method (this is the standard way)
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+
+      console.log('EmailJS response:', response);
+
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setStatus('idle'), 5000);
+    } catch (error: any) {
       setStatus('error');
-      setErrorMessage('Failed to send message. Please try again or email directly.');
-      console.error('Email error:', error);
+      
+      // Provide more specific error messages
+      let errorMsg = 'Failed to send message. ';
+      
+      if (error?.text) {
+        errorMsg += `Error: ${error.text}`;
+      } else if (error?.message) {
+        errorMsg += `Error: ${error.message}`;
+      } else if (error?.status) {
+        errorMsg += `HTTP Error: ${error.status}`;
+      } else {
+        errorMsg += 'Please check your EmailJS configuration or try again later.';
+      }
+      
+      errorMsg += ' You can also email directly at chanul.nanvidu26@gmail.com';
+      
+      setErrorMessage(errorMsg);
+      console.error('EmailJS error details:', {
+        error,
+        status: error?.status,
+        text: error?.text,
+        message: error?.message,
+      });
     }
   };
 

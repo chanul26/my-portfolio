@@ -82,7 +82,7 @@ export default function Skills() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold">
+          <h2 className="text-5xl font-bold text-cyan-400 mb-4">
             Skills & Technologies
           </h2>
         </div>

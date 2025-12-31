@@ -254,7 +254,7 @@ export default function Hero() {
               {/* Social Links */}
               <div className="flex space-x-4">
                 <a
-                  href="https://github.com/yourusername"
+                  href="https://github.com/chanul26"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all ${
@@ -266,19 +266,7 @@ export default function Hero() {
                   <Github size={20} />
                 </a>
                 <a
-                  href="https://twitter.com/yourusername"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all ${
-                    theme === 'light'
-                      ? 'border-gray-300 text-gray-600 hover:text-cyan-600 hover:border-cyan-500'
-                      : 'border-slate-600 text-gray-400 hover:text-cyan-400 hover:border-cyan-400'
-                  }`}
-                >
-                  <Twitter size={20} />
-                </a>
-                <a
-                  href="https://linkedin.com/in/yourusername"
+                  href="https://www.linkedin.com/in/chanul-nanvidu/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-all ${
