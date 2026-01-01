@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Moon, Sun } from 'lucide-react';
+import { Github, Linkedin, Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from '../context/useTheme';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -97,7 +98,13 @@ export default function Hero() {
     const element = document.querySelector(`#${sectionId}`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false); // Close menu on mobile after clicking
     }
+  };
+
+  const handleMobileMenuClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    scrollToSection(e, sectionId);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -112,14 +119,16 @@ export default function Hero() {
           ? 'bg-white/80 border-gray-200/50'
           : 'bg-slate-900/80 border-slate-700/50'
       }`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className={`text-2xl font-bold transition-colors ${
+            <div className={`text-xl sm:text-2xl font-bold transition-colors ${
               theme === 'light' ? 'text-gray-900' : 'text-white'
             }`}>
               CN<span className="text-cyan-500">.</span>
             </div>
-            <div className="hidden md:flex space-x-8">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-6 lg:space-x-8">
               <a 
                 href="#home" 
                 onClick={(e) => scrollToSection(e, 'home')}
@@ -197,41 +206,144 @@ export default function Hero() {
                 {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
               </button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <button
+                onClick={toggleTheme}
+                className={`p-2 rounded-lg transition-colors ${
+                  theme === 'light'
+                    ? 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                    : 'bg-slate-800 hover:bg-slate-700 text-gray-300'
+                }`}
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+              </button>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className={`p-2 rounded-lg transition-colors ${
+                  theme === 'light'
+                    ? 'text-gray-700 hover:bg-gray-100'
+                    : 'text-gray-300 hover:bg-slate-800'
+                }`}
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className={`md:hidden border-t transition-colors ${
+              theme === 'light'
+                ? 'border-gray-200 bg-white'
+                : 'border-slate-700 bg-slate-900'
+            }`}>
+              <div className="px-4 py-4 space-y-2">
+                <a 
+                  href="#home" 
+                  onClick={(e) => handleMobileMenuClick(e, 'home')}
+                  className={`block px-4 py-3 rounded-lg transition-colors ${
+                    activeSection === 'home' 
+                      ? 'text-cyan-500 bg-cyan-50 dark:bg-cyan-900/20' 
+                      : theme === 'light' 
+                        ? 'text-gray-700 hover:bg-gray-100' 
+                        : 'text-gray-300 hover:bg-slate-800'
+                  }`}
+                >
+                  Home
+                </a>
+                <a 
+                  href="#about" 
+                  onClick={(e) => handleMobileMenuClick(e, 'about')}
+                  className={`block px-4 py-3 rounded-lg transition-colors ${
+                    activeSection === 'about' 
+                      ? 'text-cyan-500 bg-cyan-50 dark:bg-cyan-900/20' 
+                      : theme === 'light' 
+                        ? 'text-gray-700 hover:bg-gray-100' 
+                        : 'text-gray-300 hover:bg-slate-800'
+                  }`}
+                >
+                  About
+                </a>
+                <a 
+                  href="#skills" 
+                  onClick={(e) => handleMobileMenuClick(e, 'skills')}
+                  className={`block px-4 py-3 rounded-lg transition-colors ${
+                    activeSection === 'skills' 
+                      ? 'text-cyan-500 bg-cyan-50 dark:bg-cyan-900/20' 
+                      : theme === 'light' 
+                        ? 'text-gray-700 hover:bg-gray-100' 
+                        : 'text-gray-300 hover:bg-slate-800'
+                  }`}
+                >
+                  Skills
+                </a>
+                <a 
+                  href="#projects" 
+                  onClick={(e) => handleMobileMenuClick(e, 'projects')}
+                  className={`block px-4 py-3 rounded-lg transition-colors ${
+                    activeSection === 'projects' 
+                      ? 'text-cyan-500 bg-cyan-50 dark:bg-cyan-900/20' 
+                      : theme === 'light' 
+                        ? 'text-gray-700 hover:bg-gray-100' 
+                        : 'text-gray-300 hover:bg-slate-800'
+                  }`}
+                >
+                  Portfolio
+                </a>
+                <a 
+                  href="#contact" 
+                  onClick={(e) => handleMobileMenuClick(e, 'contact')}
+                  className={`block px-4 py-3 rounded-lg transition-colors ${
+                    activeSection === 'contact' 
+                      ? 'text-cyan-500 bg-cyan-50 dark:bg-cyan-900/20' 
+                      : theme === 'light' 
+                        ? 'text-gray-700 hover:bg-gray-100' 
+                        : 'text-gray-300 hover:bg-slate-800'
+                  }`}
+                >
+                  Contact
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center pt-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section id="home" className="min-h-screen flex items-center pt-20 md:pt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-0">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
             <div
               className={`transition-all duration-1000 delay-300 ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
               }`}
             >
-              <h1 className={`text-5xl md:text-6xl xl:text-7xl font-bold mb-4 leading-tight transition-colors ${
+              <h1 className={`text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold mb-4 leading-tight transition-colors ${
                 theme === 'light' ? 'text-gray-900' : 'text-white'
               }`}>
                 Hi, I'm <span className="whitespace-nowrap text-cyan-500">Chanul Nanvidu</span>
               </h1>
-              <h2 className={`text-2xl md:text-3xl font-semibold mb-6 transition-colors ${
+              <h2 className={`text-xl sm:text-2xl md:text-3xl font-semibold mb-4 md:mb-6 transition-colors ${
                 theme === 'light' ? 'text-gray-700' : 'text-gray-400'
               }`}>
                 Full Stack Developer
               </h2>
-              <p className={`text-lg leading-relaxed mb-8 max-w-xl transition-colors ${
+              <p className={`text-base sm:text-lg leading-relaxed mb-6 md:mb-8 max-w-xl transition-colors ${
                 theme === 'light' ? 'text-gray-600' : 'text-gray-400'
               }`}>
                 Aspiring AI/ML Researcher & Data Science Enthusiast
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4 mb-12">
+              <div className="flex flex-wrap gap-3 md:gap-4 mb-8 md:mb-12">
                 <button
                   onClick={scrollToContact}
-                  className={`px-8 py-3 font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg ${
+                  className={`px-6 md:px-8 py-2.5 md:py-3 text-sm md:text-base font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg ${
                     theme === 'light'
                       ? 'bg-cyan-600 hover:bg-cyan-700 text-white shadow-cyan-600/50'
                       : 'bg-cyan-500 hover:bg-cyan-400 text-slate-900 shadow-cyan-500/50'
@@ -241,7 +353,7 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={handleDownloadCV}
-                  className={`px-8 py-3 border-2 rounded-lg transition-all font-semibold ${
+                  className={`px-6 md:px-8 py-2.5 md:py-3 text-sm md:text-base border-2 rounded-lg transition-all font-semibold ${
                     theme === 'light'
                       ? 'border-cyan-600 text-cyan-600 hover:bg-cyan-50'
                       : 'border-cyan-500 text-cyan-400 hover:bg-cyan-500/10'
@@ -282,11 +394,11 @@ export default function Hero() {
 
             {/* Right Image Section */}
             <div
-              className={`relative transition-all duration-1000 delay-500 ${
+              className={`relative transition-all duration-1000 delay-500 order-first lg:order-last ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
               }`}
             >
-              <div className="relative w-full max-w-lg mx-auto lg:ml-auto lg:mr-0">
+              <div className="relative w-full max-w-md sm:max-w-lg mx-auto lg:ml-auto lg:mr-0">
                 {/* Profile Image Container with Dark Vignette Effect */}
                 <div className="relative">
                   <div className="relative w-full aspect-square">
@@ -326,20 +438,20 @@ export default function Hero() {
                 </div>
 
                 {/* Floating Badge */}
-                <div className={`absolute -bottom-6 -left-6 border-2 border-cyan-500 rounded-xl p-4 shadow-xl z-20 transition-colors ${
+                <div className={`absolute -bottom-4 md:-bottom-6 -left-4 md:-left-6 border-2 border-cyan-500 rounded-xl p-3 md:p-4 shadow-xl z-20 transition-colors ${
                   theme === 'light'
                     ? 'bg-white border-cyan-600'
                     : 'bg-slate-800 border-cyan-500'
                 }`}>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="flex items-center space-x-2 md:space-x-3">
+                    <div className="w-2.5 h-2.5 md:w-3 md:h-3 bg-green-400 rounded-full animate-pulse"></div>
                     <div>
-                      <p className={`font-semibold transition-colors ${
+                      <p className={`text-xs md:text-sm font-semibold transition-colors ${
                         theme === 'light' ? 'text-gray-900' : 'text-white'
                       }`}>
                         Available for Work
                       </p>
-                      <p className={`text-sm transition-colors ${
+                      <p className={`text-xs transition-colors ${
                         theme === 'light' ? 'text-gray-600' : 'text-gray-400'
                       }`}>
                         Full Stack Projects
