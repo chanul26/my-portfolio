@@ -56,7 +56,7 @@ const skillCategories = [
     skills: [
       { name: 'Node.js', logo: NodeJSLogo },
       { name: 'Express', logo: () => <span className="font-bold">E</span> },
-      { name: 'PostgreSQL', logo: () => <span className="text-blue-400">🐘</span> },
+      { name: 'MySQL', logo: () => <span className="text-blue-400">🐘</span> },
       { name: 'MongoDB', logo: () => <span className="text-green-500">🍃</span> },
     ],
   },
