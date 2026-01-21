@@ -2,6 +2,146 @@ import { useState, useEffect } from 'react';
 import { Github, Linkedin, Moon, Sun, Menu, X } from 'lucide-react';
 import { useTheme } from '../context/useTheme';
 
+// Electro Lightning Animation Styles with Real Lightning Bolts
+const lightningStyles = `
+  @keyframes electric-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      text-shadow: 
+        0 0 10px rgba(34, 211, 238, 0.8),
+        0 0 20px rgba(34, 211, 238, 0.6),
+        0 0 30px rgba(99, 102, 241, 0.4);
+      opacity: 1;
+    }
+    20%, 24%, 55% {
+      text-shadow: 
+        0 0 5px rgba(34, 211, 238, 0.2),
+        0 0 10px rgba(99, 102, 241, 0.1);
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes neon-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.6)) drop-shadow(0 0 16px rgba(99, 102, 241, 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 16px rgba(34, 211, 238, 1)) drop-shadow(0 0 32px rgba(99, 102, 241, 0.6));
+    }
+  }
+  
+  @keyframes lightning-bolt-1 {
+    0%, 100% { opacity: 0; }
+    5%, 6%, 8%, 10% { opacity: 0.8; }
+    7%, 9% { opacity: 0.3; }
+  }
+  
+  @keyframes lightning-bolt-2 {
+    0%, 100% { opacity: 0; }
+    40%, 41%, 43%, 45% { opacity: 0.8; }
+    42%, 44% { opacity: 0.3; }
+  }
+  
+  @keyframes lightning-bolt-3 {
+    0%, 100% { opacity: 0; }
+    70%, 71%, 73%, 75% { opacity: 0.8; }
+    72%, 74% { opacity: 0.3; }
+  }
+  
+  .cn-electro {
+    animation: electric-flicker 3s ease-in-out infinite, neon-pulse 2s ease-in-out infinite;
+    display: inline-block;
+    letter-spacing: 0.05em;
+    position: relative;
+  }
+  
+  .cn-electro::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(34, 211, 238, 0.8) 10%,
+      transparent 15%,
+      rgba(34, 211, 238, 0.6) 25%,
+      transparent 30%,
+      rgba(34, 211, 238, 0.8) 40%,
+      transparent 50%,
+      rgba(34, 211, 238, 0.7) 60%,
+      transparent 70%,
+      rgba(34, 211, 238, 0.8) 80%,
+      transparent 100%
+    );
+    clip-path: polygon(
+      50% 0%, 45% 5%, 55% 10%, 40% 15%, 60% 20%, 38% 25%, 62% 30%, 
+      45% 35%, 55% 40%, 42% 45%, 58% 50%, 48% 55%, 52% 60%, 46% 65%, 
+      54% 70%, 49% 75%, 51% 80%, 50% 85%, 50% 100%
+    );
+    animation: lightning-bolt-1 3s ease-in-out infinite;
+    transform: translateX(-50%) translateY(-50%);
+    filter: blur(0.5px);
+    pointer-events: none;
+  }
+  
+  .cn-electro::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    width: 2px;
+    height: 70px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(99, 102, 241, 0.7) 15%,
+      transparent 25%,
+      rgba(99, 102, 241, 0.6) 35%,
+      transparent 50%,
+      rgba(99, 102, 241, 0.8) 60%,
+      transparent 75%,
+      rgba(99, 102, 241, 0.7) 85%,
+      transparent 100%
+    );
+    clip-path: polygon(
+      50% 0%, 40% 8%, 60% 15%, 35% 22%, 65% 30%, 42% 38%, 58% 45%,
+      48% 52%, 52% 60%, 45% 68%, 55% 75%, 50% 82%, 50% 100%
+    );
+    animation: lightning-bolt-2 3s ease-in-out infinite;
+    filter: blur(0.5px);
+    pointer-events: none;
+  }
+  
+  .lightning-bolt-3 {
+    position: absolute;
+    top: 50%;
+    left: -50px;
+    width: 2px;
+    height: 75px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(34, 211, 238, 0.6) 20%,
+      transparent 35%,
+      rgba(34, 211, 238, 0.7) 50%,
+      transparent 65%,
+      rgba(34, 211, 238, 0.8) 75%,
+      transparent 90%,
+      transparent 100%
+    );
+    clip-path: polygon(
+      50% 0%, 42% 10%, 58% 18%, 38% 28%, 62% 36%, 45% 44%, 55% 52%,
+      48% 60%, 52% 68%, 46% 76%, 54% 84%, 50% 92%, 50% 100%
+    );
+    animation: lightning-bolt-3 3s ease-in-out infinite;
+    transform: translateX(-50%) translateY(-50%);
+    filter: blur(0.5px);
+    pointer-events: none;
+  }
+`;
+
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -108,11 +248,8 @@ export default function Hero() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      theme === 'light' 
-        ? 'bg-gradient-to-br from-white via-gray-50 to-blue-50' 
-        : 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950'
-    }`}>
+    <div className="min-h-screen transition-colors duration-300">
+      <style>{lightningStyles}</style>
       {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
         theme === 'light'
@@ -121,10 +258,10 @@ export default function Hero() {
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className={`text-xl sm:text-2xl font-bold transition-colors ${
-              theme === 'light' ? 'text-gray-900' : 'text-white'
-            }`}>
-              CN<span className="text-cyan-500">.</span>
+            <div className="cn-electro text-xl sm:text-2xl font-bold">
+              <span className={`transition-colors ${
+                theme === 'light' ? 'text-gray-900' : 'text-white'
+              }`}>CN</span><span className="text-cyan-500">.</span>
             </div>
             
             {/* Desktop Navigation */}

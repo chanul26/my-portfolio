@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-cyan-400 mb-4">
               Portfolio
             </h3>
             <p className="text-gray-600 dark:text-gray-400">
@@ -17,7 +17,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-cyan-400 mb-4">
               Quick Links
             </h3>
             <div className="space-y-2">
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-cyan-400 mb-4">
               Connect
             </h3>
             <div className="flex space-x-4">
@@ -47,7 +47,7 @@ export default function Footer() {
                 href="https://github.com/chanul26"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors"
+                className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-cyan-400 hover:text-blue-600 dark:hover:text-slate-400 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors"
               >
                 <Github size={20} />
               </a>
@@ -55,7 +55,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/chanul-nanvidu/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors"
+                className="w-10 h-10 bg-gray-100 dark:bg-slate-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-cyan-400 hover:text-blue-600 dark:hover:text-slate-400 hover:bg-blue-50 dark:hover:bg-slate-700 transition-colors"
               >
                 <Linkedin size={20} />
               </a>
@@ -63,9 +63,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-slate-800">
+        <div className="mt-20 pt-8 border-t border-gray-200 dark:border-slate-800">
           <p className="text-center text-gray-600 dark:text-gray-400 flex items-center justify-center space-x-2">
-            <span>&copy; {currentYear} All Rights Reserved</span>
+            <span>&copy; {currentYear} Chanul. All Rights Reserved</span>
           </p>
         </div>
       </div>
