@@ -179,7 +179,7 @@ export default function Hero() {
                       : 'text-gray-300 hover:text-white'
                 }`}
               >
-                Portfolio
+                Projects
               </a>
               <a 
                 href="#contact" 
